@@ -1,0 +1,53 @@
+package testClasses;
+
+import static org.testng.Assert.assertEquals;
+
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class swagLabsTest extends BaseTestClass {
+
+	@BeforeMethod
+	public void navigationAndLogin() {
+		driver.navigate().to("https://www.saucedemo.com/");
+		saucedemoLoginPage.loginUsername("standard_user");
+		saucedemoLoginPage.loginPassword("secret_sauce");
+		saucedemoLoginPage.clickButtonLogin();
+	}
+
+	// Test case
+	@Test
+	public void verifySwagLabsToNewWindow() {
+		swaglabPageClass.clickFirstArticle();
+		swaglabPageClass.clickAddButton();
+		swaglabPageClass.shoppingCartClick();
+		swaglabPageClass.removeButtonClick();
+		swaglabPageClass.buttonContinueClick();
+	}
+
+	// Test case 2
+	@Test
+	public void verifySwagLabsToSecondWindow() {
+		swaglabPageClass.addButtonClick();
+		swaglabPageClass.clickShoppCart();
+		swaglabPageClass.ButtonClickCheckout();
+		swaglabPageClass.inputFirstName("Nikola");
+		swaglabPageClass.inputLastName("Medan");
+		swaglabPageClass.inputZipCode("123456789987654321");
+		swaglabPageClass.continueClickButton();
+		swaglabPageClass.buttonClickFinish();
+
+		// Provera da li je prikazana poruka "Thank you for your order!"
+		String actualMessage = swaglabPageClass.getThankYouMessage();
+		String expectedMessage = "Thank you for your order!";
+		assertEquals(actualMessage, expectedMessage, "Poruka nije ispravna!");
+
+		// Provera da li je prikaza kompletan Text
+		String actualTextComplete = swaglabPageClass.getTextComplete();
+		String expectedTextComplete = "Your order has been dispatched, and will arrive just as fast as the pony can get there!";
+		assertEquals(actualTextComplete, expectedTextComplete, "Komplet tekst poruka nije ispravan!");
+
+		swaglabPageClass.buttonClickBackHome();
+	}
+
+}
