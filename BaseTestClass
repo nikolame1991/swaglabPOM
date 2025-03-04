@@ -1,0 +1,32 @@
+package testClasses;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+
+import pageClasses.LoginPage;
+import pageClasses.swagLabsPage;
+
+public class BaseTestClass {
+	WebDriver driver;
+
+	LoginPage saucedemoLoginPage;
+	swagLabsPage swaglabPageClass;
+	TestData testData;
+
+	@BeforeTest
+	public void initalization() {
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+
+		saucedemoLoginPage = new LoginPage(driver);
+		swaglabPageClass = new swagLabsPage(driver);
+		testData = new TestData();
+	}
+
+	@AfterTest
+	public void closeDriver() {
+		driver.quit();
+	}
+}
