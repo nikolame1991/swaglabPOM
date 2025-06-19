@@ -1,50 +1,74 @@
-# 🔐 SauceDemo Automation Project (Selenium + Java + TestNG + POM)
+🔐 SauceDemo Automation Project (Selenium + Java + TestNG + POM)
 
-This project demonstrates test automation of [saucedemo.com](https://www.saucedemo.com/) using:
-- **Selenium WebDriver**
-- **Java**
-- **TestNG**
-- **Page Object Model (POM)**
-- **Explicit Waits**
+This project demonstrates test automation of saucedemo.com using:
 
----
+    Selenium WebDriver
 
-## 🧱 Project Structure
+    Java
 
+    TestNG
 
----
+    Page Object Model (POM)
 
-## 🧪 Test Scenarios
+    Explicit Waits
 
-The `LoginPageTest.java` class covers the following scenarios:
+🧱 Project Structure
 
-1. ❌ Login without credentials → expected message: `Username is required`
-2. ❌ Only password entered → expected message: `Username is required`
-3. ❌ Only username entered → expected message: `Password is required`
-4. ❌ Invalid credentials → expected message: `Username and password do not match...`
-5. ✅ Valid credentials → expected redirect to URL `/inventory.html`
+(Opiši ovde strukturu foldera i fajlova, npr.):
 
----
+swaglabPOM/
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── pageClasses/       # Page Object Model classes
+│   ├── test/
+│       └── java/
+│           └── testClasses/       # TestNG test classes
+├── testng.xml                    # TestNG suite file
+├── pom.xml / build.gradle (if any)
+└── README.md
 
-## 🛠️ Technologies Used
+🧪 Test Scenarios
 
-- Java 17+
-- Selenium WebDriver
-- TestNG
-- Page Object Model (POM)
-- WebDriverWait (Explicit Waits)
-- ChromeDriver
+The LoginPageTest.java class covers the following scenarios:
 
----
+    ❌ Login without credentials → expected message: Epic sadface: Username is required
 
-## 🚀 How to Run the Project
+    ❌ Only password entered → expected message: Epic sadface: Username is required
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/nikolame1991/swaglabPOM.git
+    ❌ Only username entered → expected message: Epic sadface: Password is required
 
+    ❌ Invalid credentials → expected message: Epic sadface: Username and password do not match any user in this service
 
+    ✅ Valid credentials → expected redirect to URL ending with /inventory.html
 
+🛠️ Technologies Used
+
+    Java 17+
+
+    Selenium WebDriver
+
+    TestNG
+
+    Page Object Model (POM)
+
+    WebDriverWait (Explicit Waits)
+
+    ChromeDriver
+
+🚀 How to Run the Project
+
+    Clone the repository:
+
+    git clone https://github.com/nikolame1991/swaglabPOM.git
+
+    Open the project in your favorite IDE (IntelliJ IDEA recommended)
+
+    Make sure you have ChromeDriver set up and in your PATH or configure its location in the code
+
+    Run TestNG test classes like LoginPageTest or use testng.xml suite file
+
+    Observe results in TestNG reports and console logs
 
 👨‍💻 Author
 
