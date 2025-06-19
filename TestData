@@ -2,19 +2,38 @@ package testClasses;
 
 import org.testng.annotations.DataProvider;
 
+/**
+ * Provides test data for login tests on SauceDemo site.
+ * Includes valid credentials and various invalid credential combinations
+ * with expected error messages.
+ */
 public class TestData {
 
-	public String correctUsername = "standard_user";
-	public String correctPassword = "secret_sauce";
+    // Valid login credentials for positive test scenarios
+    public String correctUsername = "standard_user";
+    public String correctPassword = "secret_sauce";
 
-	@DataProvider(name = "incorrectCredentials")
-	public Object[][] loginTests() {
-		return new Object[][] { { "", "", "Epic sadface: Username is required" }, // Empty credentials
-				{ "", "secret_sauce", "Epic sadface: Username is required" }, // Empty username
-				{ "wrong_user", "wrong_pass",
-						"Epic sadface: Username and password do not match any user in this service" }, // Invalid
-																										// credentials
-				{ "standard_user", "secret_sauce", null } // Valid credentials (no error)
-		};
-	}
+    /**
+     * Data provider supplying multiple sets of credentials and expected error messages.
+     * Used for negative and positive login tests.
+     *
+     * @return 2D array of {username, password, expectedErrorMessage}
+     */
+    @DataProvider(name = "incorrectCredentials")
+    public Object[][] loginTests() {
+        return new Object[][] {
+            // Empty username and password
+            { "", "", "Epic sadface: Username is required" },
+
+            // Empty username, valid password
+            { "", "secret_sauce", "Epic sadface: Username is required" },
+
+            // Invalid username and password
+            { "wrong_user", "wrong_pass",
+                "Epic sadface: Username and password do not match any user in this service" },
+
+            // Valid username and password, no error expected
+            { "standard_user", "secret_sauce", null }
+        };
+    }
 }
