@@ -9,24 +9,38 @@ import pageClasses.LoginPage;
 import pageClasses.swagLabsPage;
 
 public class BaseTestClass {
-	WebDriver driver;
+    WebDriver driver;
 
-	LoginPage saucedemoLoginPage;
-	swagLabsPage swaglabPageClass;
-	TestData testData;
+    // Page Object za login stranicu SauceDemo sajta
+    LoginPage saucedemoLoginPage;
 
-	@BeforeTest
-	public void initalization() {
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
+    // Page Object za glavnu stranicu (product page) SauceDemo sajta
+    swagLabsPage swaglabPageClass;
 
-		saucedemoLoginPage = new LoginPage(driver);
-		swaglabPageClass = new swagLabsPage(driver);
-		testData = new TestData();
-	}
+    // Klasa sa test podacima (npr. korisnički podaci)
+    TestData testData;
 
-	@AfterTest
-	public void closeDriver() {
-		driver.quit();
-	}
+    /**
+     * Metoda za inicijalizaciju WebDriver-a pre pokretanja testova.
+     * Otvara Chrome browser, maksimalizuje prozor i inicijalizuje
+     * Page Object klase i test podatke.
+     */
+    @BeforeTest
+    public void initalization() {
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        saucedemoLoginPage = new LoginPage(driver);
+        swaglabPageClass = new swagLabsPage(driver);
+        testData = new TestData();
+    }
+
+    /**
+     * Metoda koja se poziva nakon završetka svih testova,
+     * zatvara browser i oslobadja resurse.
+     */
+    @AfterTest
+    public void closeDriver() {
+        driver.quit();
+    }
 }
