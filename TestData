@@ -4,35 +4,36 @@ import org.testng.annotations.DataProvider;
 
 /**
  * Provides test data for login tests on SauceDemo site.
- * Includes valid credentials and various invalid credential combinations
- * with expected error messages.
+ * Contains valid credentials for positive tests,
+ * and various invalid credential sets with expected error messages
+ * for negative testing.
  */
 public class TestData {
 
-    // Valid login credentials for positive test scenarios
+    // Valid credentials for successful login tests
     public String correctUsername = "standard_user";
     public String correctPassword = "secret_sauce";
 
     /**
-     * Data provider supplying multiple sets of credentials and expected error messages.
-     * Used for negative and positive login tests.
+     * TestNG DataProvider method supplying sets of credentials
+     * and expected error messages to test different login scenarios.
      *
-     * @return 2D array of {username, password, expectedErrorMessage}
+     * @return Object[][] containing username, password, expectedErrorMessage
      */
     @DataProvider(name = "incorrectCredentials")
     public Object[][] loginTests() {
         return new Object[][] {
-            // Empty username and password
+            // Case: Both username and password empty
             { "", "", "Epic sadface: Username is required" },
 
-            // Empty username, valid password
+            // Case: Username empty, password valid
             { "", "secret_sauce", "Epic sadface: Username is required" },
 
-            // Invalid username and password
+            // Case: Invalid username and password
             { "wrong_user", "wrong_pass",
                 "Epic sadface: Username and password do not match any user in this service" },
 
-            // Valid username and password, no error expected
+            // Case: Valid username and password - no error expected
             { "standard_user", "secret_sauce", null }
         };
     }
