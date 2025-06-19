@@ -10,74 +10,79 @@ public class LoginPageTest extends BaseTestClass {
 
     @BeforeMethod
     public void navigation() {
-        // Navigate to the SauceDemo login page before each test
+        // Navigate to the SauceDemo login page before each test execution
         driver.navigate().to("https://www.saucedemo.com/");
     }
 
     @AfterMethod
     public void deleteCookies() {
-        // Clear cookies after each test to ensure clean session
+        // Clear browser cookies after each test to ensure a fresh session
         driver.manage().deleteAllCookies();
     }
 
-    // 1. Test case: Attempt login with empty credentials
+    // 1. Test case: Attempt login with both username and password empty
     @Test
     public void loginWithOutCredentials() {
-        saucedemoLoginPage.loginUsername("");
-        saucedemoLoginPage.loginPassword("");
-        saucedemoLoginPage.clickButtonLogin();
+        saucedemoLoginPage.loginUsername("");  // Enter empty username
+        saucedemoLoginPage.loginPassword("");  // Enter empty password
+        saucedemoLoginPage.clickButtonLogin(); // Click the login button
 
+        // Verify that proper error message is displayed
         String actualErrorMessage = saucedemoLoginPage.getErrorMessage();
         String expectedErrorMessage = "Epic sadface: Username is required";
         assertEquals(actualErrorMessage, expectedErrorMessage);
     }
 
-    // 2. Test case: Only password entered, username empty
+    // 2. Test case: Attempt login with only password entered (username empty)
     @Test
     public void loginWithOnlyPassword() {
-        saucedemoLoginPage.loginUsername("");
-        saucedemoLoginPage.loginPassword(testData.correctPassword);
+        saucedemoLoginPage.loginUsername("");  // Empty username
+        saucedemoLoginPage.loginPassword(testData.correctPassword); // Valid password
         saucedemoLoginPage.clickButtonLogin();
 
+        // Verify error message for missing username
         String actualErrorMessage = saucedemoLoginPage.getErrorMessage();
         String expectedErrorMessage = "Epic sadface: Username is required";
         assertEquals(actualErrorMessage, expectedErrorMessage);
     }
 
-    // 3. Test case: Only username entered, password empty
+    // 3. Test case: Attempt login with only username entered (password empty)
     @Test
     public void loginWithOnlyUsername() {
-        saucedemoLoginPage.loginUsername(testData.correctUsername);
-        saucedemoLoginPage.loginPassword("");
+        saucedemoLoginPage.loginUsername(testData.correctUsername); // Valid username
+        saucedemoLoginPage.loginPassword(""); // Empty password
         saucedemoLoginPage.clickButtonLogin();
 
+        // Verify error message for missing password
         String actualErrorMessage = saucedemoLoginPage.getErrorMessage();
         String expectedErrorMessage = "Epic sadface: Password is required";
         assertEquals(actualErrorMessage, expectedErrorMessage);
     }
 
-    // 4. Test case: Invalid username and password
+    // 4. Test case: Attempt login with invalid username and password
     @Test
     public void loginWithInvalidCredentials() {
-        saucedemoLoginPage.loginUsername("invalid_user");
-        saucedemoLoginPage.loginPassword("invalid_password");
+        saucedemoLoginPage.loginUsername("invalid_user");   // Invalid username
+        saucedemoLoginPage.loginPassword("invalid_password"); // Invalid password
         saucedemoLoginPage.clickButtonLogin();
 
+        // Verify error message for invalid credentials
         String actualErrorMessage = saucedemoLoginPage.getErrorMessage();
         String expectedErrorMessage = "Epic sadface: Username and password do not match any user in this service";
         assertEquals(actualErrorMessage, expectedErrorMessage);
     }
 
-    // 5. Test case: Valid username and password
+    // 5. Test case: Attempt login with valid username and password
     @Test
     public void loginWithValidCredentials() {
-        saucedemoLoginPage.loginUsername(testData.correctUsername);
-        saucedemoLoginPage.loginPassword(testData.correctPassword);
+        saucedemoLoginPage.loginUsername(testData.correctUsername); // Valid username
+        saucedemoLoginPage.loginPassword(testData.correctPassword); // Valid password
         saucedemoLoginPage.clickButtonLogin();
 
-        // Verify that URL changes to indicate successful login
+        // Verify that URL changes after successful login
         String actualUrl = driver.getCurrentUrl();
-        String expectedUrl = driver.getCurrentUrl(); // You might want to replace this with the actual expected URL after login
+        // TODO: Replace with the actual expected URL after login
+        String expectedUrl = driver.getCurrentUrl();
         assertEquals(actualUrl, expectedUrl);
     }
 }
