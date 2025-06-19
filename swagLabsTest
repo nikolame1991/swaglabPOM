@@ -7,47 +7,53 @@ import org.testng.annotations.Test;
 
 public class swagLabsTest extends BaseTestClass {
 
-	@BeforeMethod
-	public void navigationAndLogin() {
-		driver.navigate().to("https://www.saucedemo.com/");
-		saucedemoLoginPage.loginUsername("standard_user");
-		saucedemoLoginPage.loginPassword("secret_sauce");
-		saucedemoLoginPage.clickButtonLogin();
-	}
+    @BeforeMethod
+    public void navigationAndLogin() {
+        // Navigate to SauceDemo login page and perform login before each test
+        driver.navigate().to("https://www.saucedemo.com/");
+        saucedemoLoginPage.loginUsername("standard_user");
+        saucedemoLoginPage.loginPassword("secret_sauce");
+        saucedemoLoginPage.clickButtonLogin();
+    }
 
-	// Test case
-	@Test
-	public void verifySwagLabsToNewWindow() {
-		swaglabPageClass.clickFirstArticle();
-		swaglabPageClass.clickAddButton();
-		swaglabPageClass.shoppingCartClick();
-		swaglabPageClass.removeButtonClick();
-		swaglabPageClass.buttonContinueClick();
-	}
+    // Test case 1: Add first product to cart, open cart, remove product, continue shopping
+    @Test
+    public void verifySwagLabsToNewWindow() {
+        swaglabPageClass.clickFirstArticle();
+        swaglabPageClass.clickAddButton();
+        swaglabPageClass.shoppingCartClick();
+        swaglabPageClass.removeButtonClick();
+        swaglabPageClass.buttonContinueClick();
+    }
 
-	// Test case 2
-	@Test
-	public void verifySwagLabsToSecondWindow() {
-		swaglabPageClass.addButtonClick();
-		swaglabPageClass.clickShoppCart();
-		swaglabPageClass.ButtonClickCheckout();
-		swaglabPageClass.inputFirstName("Nikola");
-		swaglabPageClass.inputLastName("Medan");
-		swaglabPageClass.inputZipCode("123456789987654321");
-		swaglabPageClass.continueClickButton();
-		swaglabPageClass.buttonClickFinish();
+    // Test case 2: Add second product to cart and complete checkout flow
+    @Test
+    public void verifySwagLabsToSecondWindow() {
+        swaglabPageClass.addButtonClick();
+        swaglabPageClass.clickShoppCart();
+        swaglabPageClass.ButtonClickCheckout();
 
-		// Provera da li je prikazana poruka "Thank you for your order!"
-		String actualMessage = swaglabPageClass.getThankYouMessage();
-		String expectedMessage = "Thank you for your order!";
-		assertEquals(actualMessage, expectedMessage, "Poruka nije ispravna!");
+        // Fill in checkout form details
+        swaglabPageClass.inputFirstName("Nikola");
+        swaglabPageClass.inputLastName("Medan");
+        swaglabPageClass.inputZipCode("123456789987654321");
+        swaglabPageClass.continueClickButton();
 
-		// Provera da li je prikaza kompletan Text
-		String actualTextComplete = swaglabPageClass.getTextComplete();
-		String expectedTextComplete = "Your order has been dispatched, and will arrive just as fast as the pony can get there!";
-		assertEquals(actualTextComplete, expectedTextComplete, "Komplet tekst poruka nije ispravan!");
+        // Complete the order
+        swaglabPageClass.buttonClickFinish();
 
-		swaglabPageClass.buttonClickBackHome();
-	}
+        // Verify that "Thank you for your order!" message is displayed
+        String actualMessage = swaglabPageClass.getThankYouMessage();
+        String expectedMessage = "Thank you for your order!";
+        assertEquals(actualMessage, expectedMessage, "The message is not correct!");
+
+        // Verify the detailed confirmation text below the main message
+        String actualTextComplete = swaglabPageClass.getTextComplete();
+        String expectedTextComplete = "Your order has been dispatched, and will arrive just as fast as the pony can get there!";
+        assertEquals(actualTextComplete, expectedTextComplete, "The complete text message is not correct!");
+
+        // Navigate back to the home/products page
+        swaglabPageClass.buttonClickBackHome();
+    }
 
 }
