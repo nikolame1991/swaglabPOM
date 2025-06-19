@@ -10,165 +10,168 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class swagLabsPage {
-	WebDriver driver;
-	WebDriverWait wait;
+    WebDriver driver;
+    WebDriverWait wait;
 
-	// Element
-	// kliknuti prvu sekciju kod teksta
-	@FindBy(css = ".inventory_container .inventory_item:nth-child(1) #item_4_title_link")
-	WebElement choseFirstArtical;
+    // Web Elements
 
-	// Kliknuti dugme "Add to cart"
-	@FindBy(css = ".btn.btn_primary.btn_small.btn_inventory")
-	WebElement clickButtonAdd;
+    // Click the first product link (title)
+    @FindBy(css = ".inventory_container .inventory_item:nth-child(1) #item_4_title_link")
+    WebElement chooseFirstArticle;
 
-	// Kliknuti link "Korpu"
-	@FindBy(css = "#shopping_cart_container a")
-	WebElement clickShoppingCart;
+    // Click "Add to cart" button for first item
+    @FindBy(css = ".btn.btn_primary.btn_small.btn_inventory")
+    WebElement clickButtonAdd;
 
-	// Kliknuti dugme "Remove"
-	@FindBy(css = "#remove-sauce-labs-backpack")
-	WebElement clickButtonRemove;
+    // Click the shopping cart link/icon
+    @FindBy(css = "#shopping_cart_container a")
+    WebElement clickShoppingCart;
 
-	// Kliknuti dugme "Continue Shopping"
-	@FindBy(css = "#continue-shopping")
-	WebElement clickButtonContinue;
-	// ------------------------------------
+    // Click the "Remove" button for the backpack item
+    @FindBy(css = "#remove-sauce-labs-backpack")
+    WebElement clickButtonRemove;
 
-	// kliknuti dugme "add to cart"
-	@FindBy(css = "#inventory_container .inventory_item:nth-child(2) #add-to-cart-sauce-labs-bike-light")
-	WebElement clickSecondButtonAdd;
+    // Click the "Continue Shopping" button
+    @FindBy(css = "#continue-shopping")
+    WebElement clickButtonContinue;
 
-	// kliknuti drugu sekciju kod teksta
-	@FindBy(css = ".primary_header #shopping_cart_container > a")
-	WebElement clickShoppCart;
+    // ------------------------------------
 
-	// Kliknuti dugme "checkout"
-	@FindBy(css = ".cart_footer #checkout")
-	WebElement clickButtonCheckout;
+    // Click "Add to cart" button for the second product
+    @FindBy(css = "#inventory_container .inventory_item:nth-child(2) #add-to-cart-sauce-labs-bike-light")
+    WebElement clickSecondButtonAdd;
 
-	// Popuniti prazno polje "First name"
-	@FindBy(css = ".form_group #first-name")
-	WebElement inputFirstName;
+    // Click the shopping cart link/icon (alternative)
+    @FindBy(css = ".primary_header #shopping_cart_container > a")
+    WebElement clickShoppCart;
 
-	// popuniti prazno polje "Last name"
-	@FindBy(css = ".form_group #last-name")
-	WebElement inputLastName;
+    // Click the "Checkout" button on the cart page
+    @FindBy(css = ".cart_footer #checkout")
+    WebElement clickButtonCheckout;
 
-	// Popuniti prazno polje "Zip Codde"
-	@FindBy(css = ".form_group #postal-code")
-	WebElement inputZipCod;
+    // Input field for "First Name"
+    @FindBy(css = ".form_group #first-name")
+    WebElement inputFirstName;
 
-	// Kliknuti dugme "Continue"
-	@FindBy(css = ".checkout_buttons .submit-button.btn.btn_primary.cart_button.btn_action")
-	WebElement contiueClickButton;
+    // Input field for "Last Name"
+    @FindBy(css = ".form_group #last-name")
+    WebElement inputLastName;
 
-	// Kliknuti dugme "Finish"
-	@FindBy(css = ".cart_footer #finish")
-	WebElement clickFinisg;
+    // Input field for "Zip Code"
+    @FindBy(css = ".form_group #postal-code")
+    WebElement inputZipCod;
 
-	// Provera poruke "Thank you for your order!"
-	@FindBy(css = "#checkout_complete_container > h2")
-	WebElement thankYouMessage;
+    // Click the "Continue" button on the checkout form
+    @FindBy(css = ".checkout_buttons .submit-button.btn.btn_primary.cart_button.btn_action")
+    WebElement continueClickButton;
 
-	// Provera druga poruka ispod prve poruke
-	@FindBy(css = ".complete-text")
-	WebElement completTextMessage;
+    // Click the "Finish" button to complete the order
+    @FindBy(css = ".cart_footer #finish")
+    WebElement clickFinish;
 
-	// Klinkuti duhme "Back Home"
-	@FindBy(css = "#back-to-products")
-	WebElement clickButtonBackHome;
-	// *-------------------------------------------------------
+    // Verify the "Thank you for your order!" message
+    @FindBy(css = "#checkout_complete_container > h2")
+    WebElement thankYouMessage;
 
-	// Konstruktor
-	public swagLabsPage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	}
+    // Verify additional confirmation message below the thank you message
+    @FindBy(css = ".complete-text")
+    WebElement completeTextMessage;
 
-	// Metod
-	// kliknuti prvu sekciju kod teksta
-	public void clickFirstArticle() {
-		wait.until(ExpectedConditions.elementToBeClickable(choseFirstArtical)).click();
-	}
+    // Click the "Back Home" button to return to product page
+    @FindBy(css = "#back-to-products")
+    WebElement clickButtonBackHome;
 
-	// Kliknuti dugme "Add to cart"
-	public void clickAddButton() {
-		wait.until(ExpectedConditions.elementToBeClickable(clickButtonAdd)).click();
-	}
+    // Constructor to initialize driver, waits and page elements
+    public swagLabsPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
 
-	// Kliknuti link "Korpu"
-	public void shoppingCartClick() {
-		wait.until(ExpectedConditions.elementToBeClickable(clickShoppingCart)).click();
-	}
+    // Methods for user actions
 
-	// kliknuti dugme "Remove"
-	public void removeButtonClick() {
-		wait.until(ExpectedConditions.elementToBeClickable(clickButtonRemove)).click();
-	}
+    // Click the first product link
+    public void clickFirstArticle() {
+        wait.until(ExpectedConditions.elementToBeClickable(chooseFirstArticle)).click();
+    }
 
-	// kliknuti dugme "Continue Shopping"
-	public void buttonContinueClick() {
-		wait.until(ExpectedConditions.elementToBeClickable(clickButtonContinue)).click();
-	}
+    // Click the "Add to cart" button for first product
+    public void clickAddButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(clickButtonAdd)).click();
+    }
 
-	// -------------------------------------------
-	// kliknuti dugme "add to cart"
-	public void addButtonClick() {
-		wait.until(ExpectedConditions.elementToBeClickable(clickSecondButtonAdd)).click();
-	}
+    // Click the shopping cart icon/link
+    public void shoppingCartClick() {
+        wait.until(ExpectedConditions.elementToBeClickable(clickShoppingCart)).click();
+    }
 
-	// kliknuti drugu sekciju kod teksta
-	public void clickShoppCart() {
-		wait.until(ExpectedConditions.elementToBeClickable(clickShoppCart)).click();
-	}
+    // Click the "Remove" button on cart page
+    public void removeButtonClick() {
+        wait.until(ExpectedConditions.elementToBeClickable(clickButtonRemove)).click();
+    }
 
-	// Kliknuti dugme "checkout"
-	public void ButtonClickCheckout() {
-		wait.until(ExpectedConditions.elementToBeClickable(clickButtonCheckout)).click();
-	}
+    // Click the "Continue Shopping" button
+    public void buttonContinueClick() {
+        wait.until(ExpectedConditions.elementToBeClickable(clickButtonContinue)).click();
+    }
 
-	// Popuniti prazno polje "First Name"
-	public void inputFirstName(String firstName) {
-		wait.until(ExpectedConditions.visibilityOf(inputFirstName));
-		inputFirstName.sendKeys(firstName);
-	}
+    // -------------------------------------------
 
-	// popuniti prazno polje "Last name"
-	public void inputLastName(String lastName) {
-		wait.until(ExpectedConditions.visibilityOf(inputLastName));
-		inputLastName.sendKeys(lastName);
-	}
+    // Click the "Add to cart" button for second product
+    public void addButtonClick() {
+        wait.until(ExpectedConditions.elementToBeClickable(clickSecondButtonAdd)).click();
+    }
 
-	// popuniti prazno polje "ZIP CODE"
-	public void inputZipCode(String zipCode) {
-		wait.until(ExpectedConditions.visibilityOf(inputZipCod));
-		inputZipCod.sendKeys(zipCode);
-	}
+    // Click the shopping cart icon/link (alternative)
+    public void clickShoppCart() {
+        wait.until(ExpectedConditions.elementToBeClickable(clickShoppCart)).click();
+    }
 
-	// Kliknuti dugme "Continue Shopping"
-	public void continueClickButton() {
-		wait.until(ExpectedConditions.elementToBeClickable(contiueClickButton)).click();
-	}
+    // Click the "Checkout" button
+    public void buttonClickCheckout() {
+        wait.until(ExpectedConditions.elementToBeClickable(clickButtonCheckout)).click();
+    }
 
-	// kliknuti dugme "Finish"
-	public void buttonClickFinish() {
-		wait.until(ExpectedConditions.elementToBeClickable(clickFinisg)).click();
-	}
+    // Enter first name in the checkout form
+    public void inputFirstName(String firstName) {
+        wait.until(ExpectedConditions.visibilityOf(inputFirstName));
+        inputFirstName.sendKeys(firstName);
+    }
 
-	// Provera poruke "Thank you for your order!"
-	public String getThankYouMessage() {
-		return wait.until(ExpectedConditions.visibilityOf(thankYouMessage)).getText();
-	}
+    // Enter last name in the checkout form
+    public void inputLastName(String lastName) {
+        wait.until(ExpectedConditions.visibilityOf(inputLastName));
+        inputLastName.sendKeys(lastName);
+    }
 
-	// Provera druga poruka ispod prve poruke
-	public String getTextComplete() {
-		return wait.until(ExpectedConditions.visibilityOf(completTextMessage)).getText();
-	}
+    // Enter ZIP code in the checkout form
+    public void inputZipCode(String zipCode) {
+        wait.until(ExpectedConditions.visibilityOf(inputZipCod));
+        inputZipCod.sendKeys(zipCode);
+    }
 
-	// Kliknuti dugme "Back Home"
-	public void buttonClickBackHome() {
-		wait.until(ExpectedConditions.elementToBeClickable(clickButtonBackHome)).click();
-	}
+    // Click the "Continue" button on checkout form
+    public void continueClickButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(continueClickButton)).click();
+    }
+
+    // Click the "Finish" button to complete purchase
+    public void buttonClickFinish() {
+        wait.until(ExpectedConditions.elementToBeClickable(clickFinish)).click();
+    }
+
+    // Get the "Thank you for your order!" confirmation message text
+    public String getThankYouMessage() {
+        return wait.until(ExpectedConditions.visibilityOf(thankYouMessage)).getText();
+    }
+
+    // Get the secondary confirmation text below the thank you message
+    public String getTextComplete() {
+        return wait.until(ExpectedConditions.visibilityOf(completeTextMessage)).getText();
+    }
+
+    // Click the "Back Home" button to return to the main products page
+    public void buttonClickBackHome() {
+        wait.until(ExpectedConditions.elementToBeClickable(clickButtonBackHome)).click();
+    }
 }
